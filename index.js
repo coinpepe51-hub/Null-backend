@@ -226,6 +226,15 @@ async function executeJob(jobId, phone, banType, templates, count) {
     }
 }
 
+app.get('/api/stats', (req, res) => {
+    res.json({
+        emailCount: emailPool.length,
+        proxyCount: proxyPool.length,
+        endpointCount: WHATSAPP_ENDPOINTS.length,
+        evidenceCount: evidenceTemplates.length
+    })
+})
+
 app.listen(process.env.PORT || 3000, () => {
     console.log(`\n🔫 Null-Ban-Route backend running on port ${process.env.PORT || 3000}`)
     console.log(`📧 ${emailPool.length} email accounts`)
